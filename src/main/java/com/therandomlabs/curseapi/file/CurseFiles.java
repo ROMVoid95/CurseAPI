@@ -203,7 +203,7 @@ public class CurseFiles<F extends BasicCurseFile> extends TreeSet<F> {
 	 * @throws CurseException if an error occurs.
 	 * @see CurseAPI#parallelMap(Collection, CheckedFunction, CheckedFunction)
 	 */
-	public <K, V> Map<K, V> parallelMap(
+	public <K, V> Map<Object, Object> parallelMap(
 			CheckedFunction<? super F, ? extends K, CurseException> keyMapper,
 			CheckedFunction<? super F, ? extends V, CurseException> valueMapper
 	) throws CurseException {

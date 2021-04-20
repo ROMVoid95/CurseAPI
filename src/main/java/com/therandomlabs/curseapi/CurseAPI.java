@@ -606,7 +606,7 @@ public final class CurseAPI {
 	 * @return a {@link Map} derived from the elements of the specified {@link Collection}.
 	 * @throws CurseException if an error occurs.
 	 */
-	public static <E, K, V> Map<K, V> parallelMap(
+	public static <E, K, V> Map<Object, Object> parallelMap(
 			Collection<? extends E> collection,
 			CheckedFunction<? super E, ? extends K, CurseException> keyMapper,
 			CheckedFunction<? super E, ? extends V, CurseException> valueMapper
