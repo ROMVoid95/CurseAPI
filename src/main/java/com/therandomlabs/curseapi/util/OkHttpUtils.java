@@ -42,8 +42,8 @@ import okhttp3.Request;
 import okhttp3.ResponseBody;
 import okio.BufferedSink;
 import okio.Okio;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Contains utility methods for working with OkHttp.
@@ -52,7 +52,7 @@ public final class OkHttpUtils {
 	private static final long DEFAULT_TIMEOUT_MILLIS = 2000L;
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofMillis(DEFAULT_TIMEOUT_MILLIS);
 
-	private static final Logger logger = LoggerFactory.getLogger(OkHttpUtils.class);
+	private static final Logger logger = LogManager.getLogger(OkHttpUtils.class);
 
 	private static OkHttpClient client = new OkHttpClient.Builder().
 			connectTimeout(DEFAULT_TIMEOUT).

@@ -1,8 +1,13 @@
+plugins {
+	id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
 group = "com.therandomlabs.curseapi"
 version = "1.0.0"
 
 ext {
 	commonGradleBranch = "master"
+	defaultCompileDependencies = false
 	jacocoMinimumInstructionCoverage = 0.9
 	jacocoExcludes = [
 		"com.therandomlabs.curseapi.CurseAPIProvider",
@@ -20,6 +25,14 @@ def retrofitVersion = "2.9.0"
 def resilience4jVersion = "1.7.0"
 
 dependencies {
+
+	implementation "com.google.guava:guava:${guavaVersion}"
+
+	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
+	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+	implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.1'
+	
 	api "com.squareup.moshi:moshi:1.12.0"
 
 	api "com.squareup.retrofit2:retrofit:${retrofitVersion}"
@@ -27,9 +40,15 @@ dependencies {
 
 	api "org.jsoup:jsoup:1.13.1"
 
-	implementation "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
-	implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
-	implementation "io.github.resilience4j:resilience4j-retrofit:${resilience4jVersion}"
+	implementation("io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}") {
+		exclude module: "slf4j-api"
+	}
+	implementation("io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"){
+		exclude module: "slf4j-api"
+	}
+	implementation("io.github.resilience4j:resilience4j-retrofit:${resilience4jVersion}") {
+		exclude module: "slf4j-api"
+	}
 }
 
 jacocoTestCoverageVerification {
@@ -57,3 +76,11 @@ javadoc.options.links.addAll([
 	"https://square.github.io/retrofit/2.x/retrofit/",
 	"https://www.javadoc.io/doc/org.jsoup/jsoup/latest/"
 ])
+
+build.dependsOn shadowJar
+
+shadowJar {
+    manifest {
+        inheritFrom project.tasks.jar.manifest
+    }
+}
