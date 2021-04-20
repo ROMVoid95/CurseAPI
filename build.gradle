@@ -32,7 +32,7 @@ dependencies {
 	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
 	implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
-	
+
 	api "com.squareup.moshi:moshi:1.12.0"
 
 	api "com.squareup.retrofit2:retrofit:${retrofitVersion}"
@@ -80,7 +80,7 @@ javadoc.options.links.addAll([
 build.dependsOn shadowJar
 
 shadowJar {
-    manifest {
-        inheritFrom project.tasks.jar.manifest
-    }
+	manifest {
+		inheritFrom project.tasks.jar.manifest
+	}
 }
