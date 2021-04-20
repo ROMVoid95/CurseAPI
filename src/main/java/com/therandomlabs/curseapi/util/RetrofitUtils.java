@@ -36,10 +36,10 @@ import io.github.resilience4j.retry.Retry;
 import io.github.resilience4j.retry.RetryConfig;
 import io.vavr.control.Try;
 import okhttp3.ResponseBody;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -49,7 +49,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
  * Contains utility methods for working with Retrofit.
  */
 public final class RetrofitUtils {
-	private static final Logger logger = LogManager.getLogger(RetrofitUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(RetrofitUtils.class);
 
 	private static final CircuitBreaker circuitBreaker = CircuitBreaker.ofDefaults("curseapi");
 

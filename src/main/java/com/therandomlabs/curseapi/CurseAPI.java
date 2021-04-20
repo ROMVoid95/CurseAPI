@@ -55,10 +55,10 @@ import com.therandomlabs.curseapi.util.CheckedFunction;
 import com.therandomlabs.curseapi.util.JsoupUtils;
 import com.therandomlabs.curseapi.util.OkHttpUtils;
 import okhttp3.HttpUrl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The main CurseAPI class.
@@ -97,7 +97,7 @@ public final class CurseAPI {
 	 */
 	public static final int MIN_ATTACHMENT_ID = 76990;
 
-	private static final Logger logger = LogManager.getLogger(CurseAPI.class);
+	private static final Logger logger = LoggerFactory.getLogger(CurseAPI.class);
 
 	private static final List<CurseAPIProvider> providers = Lists.newArrayList(
 			ForgeSvcProvider.instance,
